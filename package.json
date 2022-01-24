@@ -1,0 +1,25 @@
+{
+  "name": "mini-projekt-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-handlebars": "^5.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MateuszCzek332/mini-projekt-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MateuszCzek332/mini-projekt-express/issues"
+  },
+  "homepage": "https://github.com/MateuszCzek332/mini-projekt-express#readme"
+}
