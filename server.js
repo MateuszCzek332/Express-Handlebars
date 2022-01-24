@@ -9,10 +9,14 @@ app.set('views', path.join(__dirname, 'views'));         // ustalamy katalog vie
 app.engine('hbs', hbs({ defaultLayout: 'main-loged.hbs' }));   // domyślny layout, potem można go zmienić
 app.set('view engine', 'hbs');
 
+app.use(express.urlencoded({
+    extended: true
+}));
+
 let users = [
-    {id:1, login:123, pass:123, wiek:12, uczen:"checked", plec:"m"},
-    {id:2, login:234, pass:234, wiek:23, uczen:"checked", plec:"k"},
-    {id:3, login:345, pass:345, wiek:34, uczen:"unchecked", plec:"m"}
+    {id:1, login:123, pass:123, wiek:12, uczen:"on", plec:"m"},
+    {id:2, login:234, pass:234, wiek:23, uczen:"on", plec:"k"},
+    {id:3, login:345, pass:345, wiek:34, uczen:undefined, plec:"m"}
 ];
 let islog = true;
 
@@ -22,6 +26,21 @@ app.get("/", function (req, res) {
 
 app.get("/login", function (req, res) {
     res.render('login.hbs');
+})
+
+app.post("/handlePost2", function (req, res) {
+    console.log(req.body)
+    for(i=0; i<users.length; i++){
+        if(users[i].login == req.body.login && users[i].pass == req.body.password){
+            islog = true;
+            app.engine('hbs', hbs({ defaultLayout: 'main-loged.hbs' }));
+            res.render("main.hbs")
+            return;
+        }
+    }
+
+    res.send("Błędny login i/lub hasło");
+
 })
 
 app.get("/logout", function (req, res) {
@@ -34,6 +53,27 @@ app.get("/register", function (req, res) {
     res.render('register.hbs');
 })
 
+app.post("/handlePost", function (req, res) {
+    console.log(req.body)
+    for(i=0; i<users.length; i++){
+        if(users[i].login == req.body.login){
+            res.send("Użytkownik o takim loginie już istnieje")
+            return;
+        }
+    }
+
+    users.push(    
+        {id:users.length +1,
+         login:req.body.login, 
+         pass:req.body.password, 
+         wiek:req.body.age, 
+         uczen:req.body.uczen, 
+         plec:req.body.gender}
+        )
+    res.render("register.hbs")
+
+})
+
 app.get("/admin", function (req, res) {
 
     if(islog){
@@ -41,7 +81,7 @@ app.get("/admin", function (req, res) {
         res.render('admin.hbs', { layout: "main-loged.hbs" });
     }
     else{
-        res.send('Najpier musisz się zalogowac')
+        res.send('Najpierw musisz się zalogowac')
     }
 
 })
