@@ -1,0 +1,31 @@
+    <div> <a href="/show">SHOW</a> <a href="/gender">GENDER</a> <a href="/sort">SORT</a></div>
+
+<h1>
+    {{subject}}
+</h1>
+<table>
+    <tr>
+        <td>id</td>
+        <td>login</td>
+        <td>hasło</td>
+        <td>wiek</td>
+        <td>uczen?</td>
+        <td>płeć</td>
+    </tr>
+{{#each users1}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{login}}</td>
+        <td>{{pass}}</td>
+        <td>{{wiek}}</td>
+        <td>
+            {{#if uczen }}
+                <input type="checkbox" checked>
+            {{else}}
+                <input type="checkbox">
+            {{/if}}
+        </td>
+        <td>{{plec}}</td>
+    </tr>
+{{/each}}
+</table>

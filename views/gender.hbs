@@ -1,0 +1,38 @@
+    <div> <a href="/show">SHOW</a> <a href="/gender">GENDER</a> <a href="/sort">SORT</a></div>
+
+    <h1>
+    {{subject}}
+    </h1>
+
+    <h2>Mężczyźni</h2>
+    <table>
+        <tr>
+            <td>id</td>
+            <td>login</td>
+            <td>płeć</td>
+        </tr>
+    {{#each male}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{login}}</td>
+            <td>{{plec}}</td>
+        </tr>
+    {{/each}}
+    </table><br>
+
+
+    <h2>Kobiety</h2>
+    <table>
+        <tr>
+            <td>id</td>
+            <td>login</td>
+            <td>płeć</td>
+        </tr>
+    {{#each female}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{login}}</td>
+            <td>{{plec}}</td>
+        </tr>
+    {{/each}}
+    </table>

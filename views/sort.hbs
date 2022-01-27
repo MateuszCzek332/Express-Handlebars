@@ -1,0 +1,36 @@
+    <div> <a href="/show">SHOW</a> <a href="/gender">GENDER</a> <a href="/sort">SORT</a></div>
+
+    <h1>
+        {{subject}}
+    </h1>
+
+    <form method="get" action="sort" onchange="this.submit()">
+        {{#if sort}}
+        <label>
+            <input type="radio" value="r" name="sort" checked >rosnąco  
+            <input type="radio" value="m" name="sort">malejąco<br>
+        </label>
+        {{else}}
+        <label>
+            <input type="radio" value="r" name="sort">rosnąco  
+            <input type="radio" value="m" name="sort" checked >malejąco<br>
+        </label>
+        {{/if}}
+    </form>
+
+    {{#if usersA }}
+        <table> 
+            <tr>
+                <td>id</td>
+                <td>login</td>
+                <td>wiek</td>
+            </tr>
+        {{#each usersA}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{login}}</td>
+                <td>{{wiek}}</td>
+            </tr>
+        {{/each}}
+        </table>
+    {{/if}}
